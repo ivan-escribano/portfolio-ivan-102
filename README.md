@@ -9,8 +9,7 @@
 
 ## Demo
 
-<!-- Replace with a screen recording or GIF of the portfolio -->
-<!-- ![Demo](demo.gif) -->
+https://github.com/user-attachments/assets/3d805def-1412-49a8-a44e-091e0f08c4dc
 
 **Live:** [ivanescribano.com](https://ivanescribano.com)
 
