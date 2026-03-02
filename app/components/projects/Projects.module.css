@@ -1,0 +1,285 @@
+/* === Base styles === */
+
+.projects {
+  position: relative;
+
+  padding: var(--spacing-5xl) var(--spacing-3xl);
+
+  background: var(--color-background);
+}
+
+/* === Section header === */
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-3xl);
+}
+
+.sectionAccent {
+  flex-shrink: 0;
+
+  width: 3px;
+  height: 3rem;
+  margin-bottom: 0.35rem;
+
+  background: var(--color-primary);
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-section);
+  font-weight: var(--font-weight-black);
+  line-height: 1;
+  color: var(--color-foreground);
+}
+
+/* === Grid === */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+/* === Card === */
+
+.card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  background: var(--color-card);
+  border: 1px solid var(--white-06);
+  cursor: pointer;
+
+  transition: border-color var(--transition-base);
+
+  &:hover {
+    border-color: var(--primary-40);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    z-index: var(--z-overlay);
+
+    width: 60%;
+    height: 1px;
+
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+
+    transition: none;
+  }
+
+  &:hover::before {
+    animation: cardBeam 1.2s linear forwards;
+  }
+}
+
+/* === Card image === */
+
+.cardImage {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.cardImageBg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  transition: transform var(--transition-slow);
+
+  .card:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.cardIcon {
+  color: var(--color-primary);
+  opacity: 0.15;
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0);
+
+  transition: background var(--transition-base);
+
+  .card:hover & {
+    background: var(--black-60);
+  }
+}
+
+.cardOverlayText {
+  font-size: var(--font-size-xxs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-foreground);
+
+  opacity: 0;
+  transform: translateY(8px);
+
+  transition: opacity var(--transition-base), transform var(--transition-base);
+
+  .card:hover & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Card body === */
+
+.cardBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--spacing-lg);
+}
+
+.cardNumber {
+  margin-bottom: var(--spacing-sm);
+
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.cardTitle {
+  margin-bottom: var(--spacing-sm);
+
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  color: var(--color-foreground);
+}
+
+.cardDesc {
+  margin-bottom: 1.2rem;
+
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-light);
+  line-height: 1.65;
+  color: var(--white-45);
+}
+
+/* === Tags === */
+
+.cardTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-top: auto;
+  margin-bottom: 1.25rem;
+}
+
+.tag {
+  padding: 0.25rem 0.6rem;
+
+  font-size: var(--font-size-tag);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white-40);
+
+  border: 1px solid var(--white-10);
+
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+
+  .card:hover & {
+    border-color: var(--primary-30);
+    color: var(--white-65);
+  }
+}
+
+/* === Footer === */
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--spacing-md);
+  margin-top: auto;
+
+  border-top: 1px solid var(--white-06);
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+
+  font-size: var(--font-size-xxs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  text-decoration: none;
+
+  transition: gap var(--transition-fast);
+
+  &:hover {
+    gap: 0.7rem;
+  }
+
+  & svg {
+    width: 14px;
+    height: 14px;
+
+    fill: var(--color-primary);
+  }
+}
+
+/* === Keyframes === */
+
+@keyframes cardBeam {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 200%;
+  }
+}
+
+/* === Tablet === */
+
+@media (max-width: 1024px) {
+  .projects {
+    padding: var(--spacing-4xl) var(--spacing-xl);
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* === Mobile === */
+
+@media (max-width: 640px) {
+  .projects {
+    padding: 5rem 1.25rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

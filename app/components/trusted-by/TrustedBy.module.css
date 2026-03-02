@@ -1,0 +1,118 @@
+/* === Base styles === */
+
+.trusted {
+  position: relative;
+  overflow: hidden;
+
+  padding: var(--spacing-3xl) 0;
+
+  background: var(--color-background);
+
+  &::before,
+  &::after {
+    position: absolute;
+    left: var(--spacing-3xl);
+    right: var(--spacing-3xl);
+
+    height: 1px;
+
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.15), transparent);
+    content: '';
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+}
+
+.label {
+  margin-bottom: var(--spacing-2xl);
+
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--white-25);
+}
+
+/* === Marquee === */
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+
+  padding: 4px 0;
+
+  mask-image: linear-gradient(90deg, transparent 0%, black 120px, black calc(100% - 120px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 120px, black calc(100% - 120px), transparent 100%);
+}
+
+.track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: marquee 35s linear infinite;
+}
+
+.item {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin: 0 var(--spacing-sm);
+  border: 1px solid var(--white-08);
+  border-radius: 8px;
+  width: 200px;
+  height: 100px;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-base),
+    background var(--transition-base);
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-20);
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.logo {
+  opacity: 0.5;
+  max-width: 90%;
+  max-height: 80%;
+
+  transition: opacity var(--transition-base), filter var(--transition-base);
+
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+
+  .item:hover & {
+    opacity: 0.9;
+  }
+}
+
+/* === Keyframes === */
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* === Mobile === */
+
+@media (max-width: 640px) {
+  .track {
+    animation-duration: 20s;
+  }
+}

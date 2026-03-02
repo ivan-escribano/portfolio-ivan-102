@@ -1,0 +1,271 @@
+/* === Base styles === */
+
+.experience {
+  position: relative;
+
+  padding: var(--spacing-5xl) var(--spacing-3xl);
+
+  background: var(--color-background);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: var(--spacing-3xl);
+    right: var(--spacing-3xl);
+
+    height: 1px;
+
+    background: linear-gradient(90deg, transparent, var(--primary-20), transparent);
+  }
+}
+
+/* === Section header === */
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-3xl);
+}
+
+.sectionAccent {
+  flex-shrink: 0;
+
+  width: 3px;
+  height: 3rem;
+  margin-bottom: 0.35rem;
+
+  background: var(--color-primary);
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-section);
+  font-weight: var(--font-weight-black);
+  line-height: 1;
+  color: var(--color-foreground);
+}
+
+/* === Timeline === */
+
+.timeline {
+  position: relative;
+
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.timelineLine {
+  position: absolute;
+  top: 6px;
+  bottom: 0;
+  left: 158px;
+  overflow: hidden;
+
+  width: 1px;
+
+  background: var(--white-06);
+}
+
+.timelineLineFill {
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(to bottom, var(--color-primary), var(--primary-05));
+}
+
+/* === Item === */
+
+.item {
+  display: grid;
+  grid-template-columns: 140px 20px 1fr;
+  gap: 0 2.5rem;
+  align-items: start;
+  padding-bottom: var(--spacing-3xl);
+}
+
+/* === Left (year) === */
+
+.left {
+  padding-top: 0.3rem;
+
+  text-align: right;
+}
+
+.year {
+  font-size: 0.67rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.yearMobile {
+  display: none;
+}
+
+/* === Dot === */
+
+.dot {
+  position: relative;
+  z-index: var(--z-card);
+  justify-self: center;
+
+  width: 9px;
+  height: 9px;
+  margin-top: 0.3rem;
+
+  background: #111;
+  border: 1px solid var(--white-15);
+  border-radius: 50%;
+
+  transition: background var(--transition-base), border-color var(--transition-base);
+
+  .item:hover & {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+}
+
+.dotActive {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+
+    border: 1px solid var(--primary-35);
+    border-radius: 50%;
+
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+}
+
+/* === Right (content) === */
+
+.title {
+  margin-bottom: 0.3rem;
+
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  color: var(--color-foreground);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.company {
+  font-size: 0.82rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--white-65);
+}
+
+.sep {
+  font-size: var(--font-size-xxs);
+  color: var(--white-20);
+}
+
+.location {
+  font-size: var(--font-size-xs);
+  color: var(--white-30);
+}
+
+.bullets {
+  max-width: 540px;
+  margin: 0 0 var(--spacing-md);
+  padding-left: 1rem;
+
+  list-style: none;
+}
+
+.bullet {
+  position: relative;
+
+  padding-left: 0.75rem;
+  margin-bottom: 0.35rem;
+
+  font-size: 0.84rem;
+  font-weight: var(--font-weight-light);
+  line-height: 1.78;
+  color: var(--white-42);
+
+  &::before {
+    content: '—';
+    position: absolute;
+    left: -1rem;
+
+    color: var(--primary-35);
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.tag {
+  padding: 0.25rem 0.6rem;
+
+  font-size: var(--font-size-tag);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white-40);
+
+  border: 1px solid var(--white-10);
+}
+
+/* === Keyframes === */
+
+@keyframes dotPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.1;
+  }
+}
+
+/* === Tablet === */
+
+@media (max-width: 768px) {
+  .experience {
+    padding: 5rem 1.25rem;
+  }
+
+  .timelineLine {
+    left: 8px;
+  }
+
+  .item {
+    grid-template-columns: 20px 1fr;
+    gap: 0 1.25rem;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .yearMobile {
+    display: block;
+    margin-bottom: 0.4rem;
+
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+}

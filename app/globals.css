@@ -1,13 +1,129 @@
+/* === Design Tokens === */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors */
+  --color-primary: #3b82f6;
+  --color-background: #000;
+  --color-foreground: #fff;
+  --color-card: #080808;
+
+  /* Terminal dots */
+  --color-dot-red: #ff5f57;
+  --color-dot-yellow: #ffbd2e;
+  --color-dot-green: #28ca41;
+
+  /* White alpha scale */
+  --white-02: rgba(255, 255, 255, 0.02);
+  --white-04: rgba(255, 255, 255, 0.04);
+  --white-05: rgba(255, 255, 255, 0.05);
+  --white-06: rgba(255, 255, 255, 0.06);
+  --white-08: rgba(255, 255, 255, 0.08);
+  --white-10: rgba(255, 255, 255, 0.1);
+  --white-12: rgba(255, 255, 255, 0.12);
+  --white-15: rgba(255, 255, 255, 0.15);
+  --white-20: rgba(255, 255, 255, 0.2);
+  --white-25: rgba(255, 255, 255, 0.25);
+  --white-28: rgba(255, 255, 255, 0.28);
+  --white-30: rgba(255, 255, 255, 0.3);
+  --white-35: rgba(255, 255, 255, 0.35);
+  --white-40: rgba(255, 255, 255, 0.4);
+  --white-42: rgba(255, 255, 255, 0.42);
+  --white-45: rgba(255, 255, 255, 0.45);
+  --white-50: rgba(255, 255, 255, 0.5);
+  --white-55: rgba(255, 255, 255, 0.55);
+  --white-65: rgba(255, 255, 255, 0.65);
+  --white-75: rgba(255, 255, 255, 0.75);
+  --white-85: rgba(255, 255, 255, 0.85);
+
+  /* Black alpha scale */
+  --black-35: rgba(0, 0, 0, 0.35);
+  --black-40: rgba(0, 0, 0, 0.4);
+  --black-50: rgba(0, 0, 0, 0.5);
+  --black-60: rgba(0, 0, 0, 0.6);
+  --black-75: rgba(0, 0, 0, 0.75);
+  --black-80: rgba(0, 0, 0, 0.8);
+
+  /* Primary alpha scale */
+  --primary-03: rgba(59, 130, 246, 0.03);
+  --primary-05: rgba(59, 130, 246, 0.05);
+  --primary-06: rgba(59, 130, 246, 0.06);
+  --primary-20: rgba(59, 130, 246, 0.2);
+  --primary-25: rgba(59, 130, 246, 0.25);
+  --primary-30: rgba(59, 130, 246, 0.3);
+  --primary-35: rgba(59, 130, 246, 0.35);
+  --primary-40: rgba(59, 130, 246, 0.4);
+
+  /* Fonts (aliases set on body where next/font variables are available) */
+
+  /* Font sizes */
+  --font-size-hero: clamp(3.5rem, 8vw, 7rem);
+  --font-size-section: clamp(2.5rem, 5vw, 4rem);
+  --font-size-contact: clamp(2rem, 5vw, 3.5rem);
+  --font-size-about: clamp(1.6rem, 3vw, 2.2rem);
+  --font-size-subtitle: clamp(0.9rem, 1.5vw, 1.05rem);
+  --font-size-body: 0.87rem;
+  --font-size-sm: 0.8rem;
+  --font-size-xs: 0.75rem;
+  --font-size-xxs: 0.7rem;
+  --font-size-tag: 0.62rem;
+  --font-size-footer: 0.58rem;
+
+  /* Font weights */
+  --font-weight-black: 900;
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+  --font-weight-light: 300;
+
+  /* Spacing */
+  --spacing-xs: 0.4rem;
+  --spacing-sm: 0.6rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 2.5rem;
+  --spacing-3xl: 4rem;
+  --spacing-4xl: 6rem;
+  --spacing-5xl: 8rem;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-slower: 0.7s ease;
+  --transition-slowest: 0.8s ease;
+
+  /* Shadows */
+  --shadow-glow: 0 8px 30px rgba(59, 130, 246, 0.25);
+  --shadow-terminal: 0 0 40px rgba(59, 130, 246, 0.06);
+  --shadow-hero-text: 0 2px 40px rgba(0, 0, 0, 0.8), 0 0 80px rgba(0, 0, 0, 0.5);
+
+  /* Z-index */
+  --z-nav: 100;
+  --z-overlay: 10;
+  --z-card: 1;
+  --z-base: 0;
+
+  /* Breakpoints (for reference, used as values in media queries) */
+  /* 480px — mobile small */
+  /* 640px — mobile */
+  /* 768px — tablet */
+  /* 1024px — desktop */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* === Reset === */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -17,17 +133,15 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  --font-heading: var(--font-playfair-display), serif;
+  --font-body: var(--font-dm-sans), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  color: var(--color-foreground);
+  background: var(--color-background);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
 }
 
 a {
@@ -35,8 +149,6 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+section[id] {
+  scroll-margin-top: 5rem;
 }
