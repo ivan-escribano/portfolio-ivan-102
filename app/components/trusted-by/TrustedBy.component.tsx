@@ -1,21 +1,40 @@
+'use client';
+
+import Image from 'next/image';
+
+import useScrollReveal from '@/app/hooks/use-scroll-reveal';
+import cloudinaryLoader from '@/app/lib/cloudinary-loader';
+
+import { TRUSTED_BY_COMPANIES, TRUSTED_BY_COPY } from './trusted-by.config';
 import styles from './TrustedBy.module.css';
-import { TRUSTED_BY_COPY, TRUSTED_BY_COMPANIES } from './trusted-by.config';
 
 const CompanyList = () => (
   <>
     {TRUSTED_BY_COMPANIES.map((company) => (
       <span key={company.name} className={styles.item}>
-        <img src={company.logo} alt={company.name} className={styles.logo} />
+        <Image
+          loader={cloudinaryLoader}
+          src={company.logo}
+          alt={company.name}
+          width={200}
+          height={100}
+          className={styles.logo}
+        />
       </span>
     ))}
   </>
 );
 
 const TrustedBy = () => {
+  const labelRef = useScrollReveal();
+  const trackRef = useScrollReveal();
+
   return (
     <section id="trusted" className={styles.trusted}>
-      <p className={styles.label}>{TRUSTED_BY_COPY.label}</p>
-      <div className={styles.wrapper}>
+      <p ref={labelRef} className={`${styles.label} reveal`}>
+        {TRUSTED_BY_COPY.label}
+      </p>
+      <div ref={trackRef} className={`${styles.wrapper} reveal`}>
         <div className={styles.track}>
           <CompanyList />
           <CompanyList />

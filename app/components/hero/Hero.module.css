@@ -18,7 +18,7 @@
   inset: -20px;
   z-index: var(--z-base);
 
-  background-image: url('/images/hero.jpeg');
+  background-image: url('https://res.cloudinary.com/dlpvgtdlv/image/upload/f_auto,q_auto,w_1920/v1775338142/portfolio-v2/hero-resize_qxm1qp.webp');
   background-size: cover;
   background-position: center 30%;
 

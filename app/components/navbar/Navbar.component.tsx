@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+
+import cloudinaryLoader from '@/app/lib/cloudinary-loader';
+
 import styles from './Navbar.module.css';
 import { NAVBAR_COPY, NAV_LINKS } from './navbar.config';
 
@@ -15,7 +18,7 @@ const Navbar = () => {
       <nav className={styles.nav}>
         <div className={styles.inner}>
           <a href="#" className={styles.logo}>
-            <Image className={styles.logoImage} src="/images/logo.png" width={34} height={34} alt={NAVBAR_COPY.logoAlt} />
+            <Image loader={cloudinaryLoader} className={styles.logoImage} src="/v1775337954/portfolio-v2/logo_xfpcy9.webp" width={34} height={34} alt={NAVBAR_COPY.logoAlt} />
             <span>{NAVBAR_COPY.brandName}</span>
           </a>
           <ul className={styles.links}>

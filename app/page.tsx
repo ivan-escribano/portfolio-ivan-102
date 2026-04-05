@@ -7,10 +7,12 @@ import Experience from './components/experience/Experience.component';
 import TrustedBy from './components/trusted-by/TrustedBy.component';
 import Contact from './components/contact/Contact.component';
 import Philosophy from './components/philosophy/Philosophy.component';
+import { PersonJsonLd } from './components/structured-data/PersonJsonLd';
 
 export default function Home() {
   return (
     <>
+      <PersonJsonLd />
       <Navbar />
       <main>
         <Hero />

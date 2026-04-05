@@ -1,6 +1,12 @@
-import { Linkedin, Mail, Github } from 'lucide-react';
+'use client';
+
+import { Github, Linkedin, Mail } from 'lucide-react';
+
+// Actualizado
+import useScrollReveal from '@/app/hooks/use-scroll-reveal';
+
+import { CONTACT_BUTTONS, CONTACT_COPY, SOCIAL_LINKS } from './contact.config';
 import styles from './Contact.module.css';
-import { CONTACT_COPY, CONTACT_BUTTONS, SOCIAL_LINKS } from './contact.config';
 
 const TwitterIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -27,12 +33,19 @@ const SOCIAL_ICONS = {
 };
 
 const Contact = () => {
+  const labelRef = useScrollReveal();
+  const titleRef = useScrollReveal();
+  const buttonsRef = useScrollReveal();
+  const socialRef = useScrollReveal();
+
   return (
     <section id="contact" className={styles.contact}>
       <div className={styles.inner}>
-        <div className={styles.label}>{CONTACT_COPY.label}</div>
+        <div ref={labelRef} className={`${styles.label} reveal`}>
+          {CONTACT_COPY.label}
+        </div>
 
-        <h2 className={styles.title}>
+        <h2 ref={titleRef} className={`${styles.title} reveal`}>
           {CONTACT_COPY.titleLine1}
           <br />
           {CONTACT_COPY.titleLine2}
@@ -40,7 +53,7 @@ const Contact = () => {
 
         <p className={styles.subtitle}>{CONTACT_COPY.subtitle}</p>
 
-        <div className={styles.buttons}>
+        <div ref={buttonsRef} className={`${styles.buttons} reveal`}>
           {CONTACT_BUTTONS.map((btn) => (
             <a key={btn.label} href={btn.href} className={styles.btn} target="_blank" rel="noopener noreferrer">
               {BUTTON_ICONS[btn.icon]}
@@ -53,7 +66,7 @@ const Contact = () => {
           <span>{CONTACT_COPY.divider}</span>
         </div>
 
-        <div className={styles.social}>
+        <div ref={socialRef} className={`${styles.social} reveal`}>
           {SOCIAL_LINKS.map((link) => (
             <a key={link.label} href={link.href} className={styles.socialIcon} title={link.label} target="_blank" rel="noopener noreferrer">
               {SOCIAL_ICONS[link.icon]}
